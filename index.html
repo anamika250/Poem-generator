@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Ai Poem Generator</title>
   </head>
@@ -10,7 +11,7 @@
     <div class="container">
       <header><h1>Welcome to Ai French Poem Generator</h1></header>
       <main>
-        <form>
+        <form id="poem-generator-form">
           <input
             type="text"
             placeholder="Enter the topic of the French poem"
@@ -21,7 +22,7 @@
           />
           <input type="submit" class="submit-button" />
         </form>
-        <div class="poem">
+        <div class="poem" id="poem">
           La tombe dit à la rose
           <br />
           Des pleurs dont l'aube t'arrose
@@ -32,7 +33,7 @@
         <a href="https://github.com/anamika250/Poem-generator">Github</a> and
         hosted on <a href="https://aipoemgeneratorr.netlify.app/">Netlify</a>.
       </footer>
-      <script src="src/index.js"></script>
     </div>
+    <script src="src/index.js"></script>
   </body>
 </html>
