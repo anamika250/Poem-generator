@@ -1,9 +1,13 @@
 body {
-  background-color: #f9f7fe;
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/153/666/original/willian-justen-de-vasconcellos-lrPBS8b4G14-unsplash.jpg?1735455902");
   font-family: Helvetica, Arial, sans-serif;
+  background-size: 100%;
 }
 
 a {
+  color: black;
+}
+a:hover {
   color: #885df1;
 }
 
@@ -22,7 +26,8 @@ h1 {
   font-weight: 800;
   font-size: 36px;
   line-height: 1.5;
-  color: #272044;
+  color: white;
+  font-family: sans-serif;
 }
 .form-container {
   background-color: white;
@@ -37,17 +42,17 @@ form {
 
 .instructions {
   padding: 16px;
-  border: 1px solid rgba(39, 33, 66, 0.5);
+  border: 1px solid rgba(41, 193, 219, 0.356);
   width: 80%;
   font-size: 16px;
   border-radius: 50px;
   line-height: 20px;
-  color: #272044;
+  color: #02a79c;
 }
 
 .submit-button {
   margin-left: 10px;
-  background: #885df1;
+  background: #02a79c;
   color: white;
   border: none;
   width: 150px;
@@ -66,11 +71,13 @@ form {
   background-color: #fff;
   padding: 20px;
   line-height: 2;
-  border-left: 3px solid #885df1;
+  border-left: 3px solid #02a79c;
   box-shadow: 0px 4px 30px 0px rgba(39, 33, 66, 0.03);
+  color: gray;
 }
 
 footer {
+  color: black;
   text-align: center;
   font-size: 13px;
   margin-top: 30px;
