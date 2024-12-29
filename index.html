@@ -12,23 +12,22 @@
     <div class="container">
       <header><h1>Welcome to Ai Poem Generator</h1></header>
       <main>
-        <form id="poem-generator-form">
-          <input
-            type="text"
-            placeholder="Enter the topic of the poem"
-            autofocus
-            required
-            autocomplete="off"
-            class="instructions"
-            id="user-instruction"
-          />
-          <input type="submit" class="submit-button" />
-        </form>
-        <div class="poem" id="poem">
-          La tombe dit à la rose
-          <br />
-          Des pleurs dont l'aube t'arrose
+        <div class="form-container">
+          <form id="poem-generator-form">
+            <input
+              type="text"
+              placeholder="Enter the topic of the poem"
+              autofocus
+              required
+              autocomplete="off"
+              class="instructions"
+              id="user-instruction"
+            />
+            <input type="submit" class="submit-button" />
+          </form>
+          <div class="hint">i.e: Flower,Paris,Cheese</div>
         </div>
+        <div class="poem hidden" id="poem"></div>
       </main>
       <footer>
         This project is coded by Anamika , open-sourced on
