@@ -1,7 +1,8 @@
 body {
   background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/153/666/original/willian-justen-de-vasconcellos-lrPBS8b4G14-unsplash.jpg?1735455902");
   font-family: Helvetica, Arial, sans-serif;
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 a {
