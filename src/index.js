@@ -1,29 +1,133 @@
-function showpoem(response) {
-  new Typewriter("#poem", {
-    strings: response.data.answer,
-    autoStart: true,
-    delay: 1,
-    cursor: "",
-  });
+let selectedStyle = "romantic";
+
+function showPoem(response) {
+  let poemElement = document.querySelector("#poem");
+
+  poemElement.innerHTML = response.data.answer;
 }
 
 function generatePoem(event) {
   event.preventDefault();
 
   let instructionInput = document.querySelector("#user-instruction");
-  let apikey = "8714aed335fo8d04bt89a4b5c1266e26";
-  let prompt = `User instruction: Write a poem in english about ${instructionInput.value}`;
+
+  let topic = instructionInput.value.trim();
+
+  if (!topic) return;
+
+  let apiKey = "8714aed335fo8d04bt89a4b5c1266e26";
+
+  let prompt = `Write a ${selectedStyle} poem about ${topic}`;
+
   let context =
-    "You are a romantic Poem expert and love to write short poems. You mission is to generate a 4 line poem in basic HTML and separate each line with a <br />. Make sure to follow the user instructions. Do not include a title to the poem.Don't write html at the top. Write a different poem everytime.";
+  "You are a talented poet. Generate exactly 4 lines of poetry. Separate every line with a <br /> tag. Do not include html tags, code blocks, markdown, quotes, titles, or explanations.";
 
-  let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}`;
+  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
+    prompt,
+  )}&context=${encodeURIComponent(context)}&key=${apiKey}`;
 
+  let poemContainer = document.querySelector("#poem-container");
   let poemElement = document.querySelector("#poem");
-  poemElement.classList.remove("hidden");
-  poemElement.innerHTML = `<div class="generating">⏳ Generating a poem about ${instructionInput.value}</div>`;
 
-  axios.get(apiurl).then(showpoem);
+  poemContainer.classList.remove("hidden");
+
+  poemElement.innerHTML = `
+    <div class="generating">
+      ✨ Crafting your poem...
+    </div>
+  `;
+
+  axios
+    .get(apiUrl)
+    .then(showPoem)
+    .catch(() => {
+      poemElement.innerHTML = "Something went wrong. Please try again.";
+    });
 }
 
-let poemFormElement = document.querySelector("#poem-generator-form");
-poemFormElement.addEventListener("submit", generatePoem);
+// Form Submit
+const poemForm = document.querySelector("#poem-generator-form");
+
+poemForm.addEventListener("submit", generatePoem);
+
+// Theme Toggle
+const themeToggle = document.querySelector("#theme-toggle");
+
+function setTheme(theme) {
+  if (theme === "light") {
+    document.body.classList.add("light");
+    themeToggle.textContent = "☀️";
+  } else {
+    document.body.classList.remove("light");
+    themeToggle.textContent = "🌙";
+  }
+}
+
+const savedTheme = localStorage.getItem("theme");
+
+setTheme(savedTheme || "dark");
+
+themeToggle.addEventListener("click", () => {
+  const isLight = document.body.classList.contains("light");
+
+  if (isLight) {
+    setTheme("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    setTheme("light");
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// Style Chips
+const styleChips = document.querySelectorAll(".style-chip");
+
+styleChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    styleChips.forEach((c) => c.classList.remove("active"));
+
+    chip.classList.add("active");
+
+    selectedStyle = chip.dataset.style;
+  });
+});
+
+// Copy Button
+const copyBtn = document.querySelector("#copy-btn");
+
+copyBtn.addEventListener("click", () => {
+  const poemText = document.querySelector("#poem").innerText;
+
+  if (!poemText.trim()) return;
+
+  navigator.clipboard.writeText(poemText);
+
+  copyBtn.textContent = "✅ Copied!";
+
+  setTimeout(() => {
+    copyBtn.textContent = "📋 Copy";
+  }, 2000);
+});
+
+// Prompt Chips
+const chips = document.querySelectorAll(".chip");
+
+chips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const input = document.querySelector("#user-instruction");
+
+    input.value = chip.textContent.trim();
+
+    input.focus();
+  });
+});
+
+// Enter Key Support
+document
+  .querySelector("#user-instruction")
+  .addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      poemForm.requestSubmit();
+    }
+  });

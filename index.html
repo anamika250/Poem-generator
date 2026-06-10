@@ -1,43 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-    <link rel="stylesheet" href="src/style.css" />
+
+    <title>AI Poem Generator</title>
+
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grey+Qo&family=Kaushan+Script&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Niconne&family=Satisfy&family=Sofia&display=swap" rel="stylesheet">
-    <title>Ai Poem Generator</title>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
+    <div class="background-blur blur-1"></div>
+    <div class="background-blur blur-2"></div>
+
     <div class="container">
-      <header><h1>Welcome to Ai Poem Generator</h1></header>
+      <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+      <header>
+        <h1>AI Poem Generator</h1>
+
+        <p class="subtitle">
+          Transform thoughts into beautiful poetry with artificial intelligence.
+        </p>
+      </header>
+
       <main>
-        <div class="form-container">
+        <div class="glass-card">
           <form id="poem-generator-form">
             <input
               type="text"
-              placeholder="Enter the topic of the poem"
-              autofocus
-              required
-              autocomplete="off"
-              class="instructions"
               id="user-instruction"
+              class="instructions"
+              placeholder="Write a topic... (Moon, Love, Ocean)"
+              autocomplete="off"
+              required
             />
-            <input type="submit" class="submit-button" />
+
+            <div class="controls">
+              <div class="style-chips">
+                <button
+                  type="button"
+                  class="style-chip active"
+                  data-style="romantic"
+                >
+                  ❤️ Romantic
+                </button>
+
+                <button type="button" class="style-chip" data-style="nature">
+                  🌿 Nature
+                </button>
+
+                <button
+                  type="button"
+                  class="style-chip"
+                  data-style="inspirational"
+                >
+                  ✨ Inspirational
+                </button>
+
+                <button type="button" class="style-chip" data-style="sad">
+                  😔 Sad
+                </button>
+              </div>
+
+              <button type="submit" class="submit-button">Generate</button>
+            </div>
           </form>
-          <div class="hint">i.e: Flower,Paris,Cheese</div>
         </div>
-        <div class="poem hidden" id="poem"></div>
+
+        <div class="poem-container hidden" id="poem-container">
+          <div class="poem-card">
+            <div class="poem-header">
+              <h3>Your Poem</h3>
+
+              <button id="copy-btn" class="copy-btn">📋 Copy</button>
+            </div>
+
+            <div class="poem" id="poem"></div>
+          </div>
+        </div>
       </main>
-      <footer>
-        This project is coded by Anamika , open-sourced on
-        <a href="https://github.com/anamika250/Poem-generator">Github</a> and
-        hosted on <a href="https://aipoemgeneratorr.netlify.app/">Netlify</a>.
-      </footer>
+
+      <footer>Created by Anamika • Powered by AI</footer>
     </div>
+
     <script src="src/index.js"></script>
   </body>
 </html>
